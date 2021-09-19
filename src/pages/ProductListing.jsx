@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
-export class ProductListing extends Component {
+class ProductListing extends Component {
   constructor() {
     super();
     this.state = {
