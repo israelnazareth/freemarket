@@ -1,12 +1,16 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
+import ProductListing from './pages/ProductListing';
 
 function App() {
   return (
     <div className="App">
-      <p data-testid="home-initial-message">
-        Digite algum termo de pesquisa ou escolha uma categoria.
-      </p>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" component={ ProductListing } />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
