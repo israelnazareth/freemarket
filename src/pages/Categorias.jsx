@@ -10,20 +10,23 @@ class Categorias extends React.Component {
     };
   }
 
-  render() {
-    const { categories } = this.state;
+  chamaAPI = () => {
     getCategories().then((response) => {
       this.setState({ categories: response });
     });
+  }
 
+  render() {
+    const { categories } = this.state;
     return (
-      <ul>
-        {categories.map((categorie, index) => (
-          <li key={ index }>
-            <input type="radio" value={ categorie.name } />
-          </li>
+      <div>
+        {categories.map((category) => (
+          <label key={ category.id } htmlFor={ category.id }>
+            <input type="radio" data-testid="category" id={ category.id } />
+            {category.name}
+          </label>
         ))}
-      </ul>
+      </div>
     );
   }
 }
