@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
-class ProductListing extends Component {
+class Home extends Component {
   constructor() {
     super();
     this.state = {
@@ -39,4 +39,4 @@ class ProductListing extends Component {
   }
 }
 
-export default ProductListing;
+export default Home;
