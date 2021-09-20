@@ -25,22 +25,28 @@ class Home extends Component {
 
   handleChange = ({ target: { type, checked, value } }) => {
     const search = (type === 'checkbox') ? checked : value;
+
+    // Isso foi igual a:
+    // event.target.type é checkbox?
+    // Se sim: search é event.target.checked
+    // Se não: search é event.target.value
+    // setState search estado para esse search, dessa função
+
     this.setState({
       search,
     });
   }
 
-  // Isso foi igual a:
-  // event.target.type é checkbox?
-  // Se sim: search é event.target.checked
-  // Se não: search é event.target.value
-  // setState search estado para esse search, dessa função
+  categoryClick = async ({ target: { id } }) => {
+    const { results } = await getProductsFromCategoryAndQuery(id);
+    this.setState({ products: results, apiCall: true });
+  };
 
   render() {
     const { search, products, apiCall } = this.state;
     return (
       <div>
-        <Categories />
+        <Categories onClick={ this.categoryClick } />
         <div data-testid="home-initial-message">
           <input
             onChange={ this.handleChange }
