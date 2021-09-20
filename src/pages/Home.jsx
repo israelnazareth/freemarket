@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import Categorias from './Categorias';
-// import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import { Link } from 'react-router-dom';
+// import Categories from './Categorias';
+// import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
   constructor() {
