@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Categorias from './Categorias';
 // import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
 class ProductListing extends Component {
@@ -24,16 +25,20 @@ class ProductListing extends Component {
 
   render() {
     const { query } = this.state;
+
     return (
-      <div className="search-bar-div">
-        <label htmlFor="search-bar-label" data-testid="home-initial-message">
-          <input
-            type="text"
-            value={ query }
-            onChange={ this.handleChange }
-          />
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </label>
+      <div>
+        <Categorias />
+        <div className="search-bar-div">
+          <label htmlFor="search-bar-label" data-testid="home-initial-message">
+            <input
+              type="text"
+              value={ query }
+              onChange={ this.handleChange }
+            />
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </label>
+        </div>
       </div>
     );
   }
