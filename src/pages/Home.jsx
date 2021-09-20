@@ -69,6 +69,11 @@ class Home extends Component {
               key={ product.id }
               product={ product }
             />)) : <p>Nenhum produto foi encontrado</p>}
+          {(apiCall) ? products.map((product) => (
+            <ProductCard
+              key={ product.id }
+              product={ product }
+            />)) : <p>Nenhum produto foi encontrado</p>}
         </div>
       </div>
     );
