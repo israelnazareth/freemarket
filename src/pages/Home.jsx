@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Categories from '../components/Categories';
 import ProductCard from '../components/ProductCard';
 import { getProductsFromCategoryAndQuery } from '../services/api';
@@ -8,63 +7,62 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      search: '',
       products: [],
+      search: '',
       apiCall: false,
     };
-  }
-
-  handleChange = ({ target: { name, value } }) => {
-    this.setState({
-      [name]: value,
-    });
   }
 
   handleClick = async () => {
     const { search } = this.state;
     const { results } = await getProductsFromCategoryAndQuery(search);
-    this.setState = {
+    this.setState({
       products: results,
       apiCall: true,
-    };
+    });
   }
+
+  handleChange = ({ target: { type, checked, value } }) => {
+    const search = (type === 'checkbox') ? checked : value;
+    this.setState({
+      search,
+    });
+  }
+
+  // Isso foi igual a:
+  // event.target.type é checkbox?
+  // Se sim: search é event.target.checked
+  // Se não: search é event.target.value
+  // setState search estado para esse search, dessa função
 
   render() {
     const { search, products, apiCall } = this.state;
     return (
       <div>
         <Categories />
-        <label htmlFor="search-bar-label" data-testid="home-initial-message">
+        <div data-testid="home-initial-message">
           <input
-            id="search-bar-label"
-            type="text"
+            onChange={ this.handleChange }
             name="search"
             value={ search }
-            onChange={ this.handleChange }
+            type="text"
             placeholder="Termo de pesquisa"
             data-testid="query-input"
           />
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </label>
-        <button
-          data-testid="query-button"
-          type="button"
-          onClick={ this.handleClick }
-        >
-          Pesquisar
-        </button>
-        <Link
-          to="/shopping-cart"
-          data-testid="shopping-cart-button"
-        >
-          Ícone do carrinho de compras
-        </Link>
-        {(apiCall) ? products.map((product) => (
-          <ProductCard
-            product={ product }
-            key={ product.id }
-          />))
-          : <p>Nenhum produto foi encontrado</p>}
+          <button
+            type="button"
+            data-testid="query-button"
+            onClick={ this.handleClick }
+          >
+            Pesquisar
+          </button>
+          <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
+          {(apiCall) ? products.map((product) => (
+            <ProductCard
+              key={ product.id }
+              product={ product }
+            />)) : <p>Nenhum produto foi encontrado</p>}
+        </div>
       </div>
     );
   }
