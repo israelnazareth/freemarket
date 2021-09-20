@@ -36,11 +36,16 @@ class Home extends Component {
   // Se não: search é event.target.value
   // setState search estado para esse search, dessa função
 
+  categoryClick = async ({ target: { id } }) => {
+    const { results } = await getProductsFromCategoryAndQuery(id);
+    this.setState({ products: results });
+  };
+
   render() {
     const { search, products, apiCall } = this.state;
     return (
       <div>
-        <Categories />
+        <Categories onClick={ this.categoryClick } />
         <div data-testid="home-initial-message">
           <input
             onChange={ this.handleChange }
@@ -64,11 +69,6 @@ class Home extends Component {
           >
             Ícone do carrinho de compras
           </Link>
-          {(apiCall) ? products.map((product) => (
-            <ProductCard
-              key={ product.id }
-              product={ product }
-            />)) : <p>Nenhum produto foi encontrado</p>}
           {(apiCall) ? products.map((product) => (
             <ProductCard
               key={ product.id }
