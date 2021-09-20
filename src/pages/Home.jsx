@@ -18,7 +18,6 @@ class Home extends Component {
   //   const { categoryId, query } = this.state;
   //   const fetchCategories = await getCategories();
   //   const searchQuery = await getProductsFromCategoryAndQuery(query, categoryId);
-  // MUDANÇAAAAAAAAAAAAAAA
   // }
 
   handleChange = ({ target: { value } }) => {

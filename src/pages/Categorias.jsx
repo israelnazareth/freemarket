@@ -10,19 +10,30 @@ class Categorias extends React.Component {
     };
   }
 
-  chamaAPI = () => {
-    getCategories().then((response) => {
-      this.setState({ categories: response });
+  // chamaAPI = () => {
+  //   getCategories().then((response) => {
+  //     this.setState({ categories: response });
+  //   });
+  // }
+
+  updateState = (categories) => {
+    this.setState({
+      categories,
     });
-  }
+  };
+
+  componentDidMount = async () => {
+    const categories = await getCategories();
+    this.updateState(categories);
+  };
 
   render() {
     const { categories } = this.state;
     return (
       <div>
         {categories.map((category) => (
-          <label key={ category.id } htmlFor={ category.id }>
-            <input type="radio" data-testid="category" id={ category.id } />
+          <label key={ category.id } htmlFor="nome-generico">
+            <input type="radio" data-testid="category" id="nome-generico" />
             {category.name}
           </label>
         ))}
