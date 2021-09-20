@@ -17,10 +17,10 @@ class Categories extends React.Component {
   render() {
     const { categories } = this.state;
     return (
-      <div>
+      <div className="categories-div">
         {categories.map((category) => (
-          <label key={ category.id } htmlFor="nome-generico">
-            <input type="radio" data-testid="category" id="nome-generico" />
+          <label key={ category.id } htmlFor="label-control">
+            <input type="radio" data-testid="category" id="label-control" />
             {category.name}
           </label>
         ))}
