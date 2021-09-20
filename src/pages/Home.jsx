@@ -1,29 +1,70 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Categories from '../components/Categories';
-import SearchBar from '../components/SearchBar';
+import ProductCard from '../components/ProductCard';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
-      query: '',
+      search: '',
+      products: [],
+      apiCall: false,
     };
   }
 
-  handleChange = ({ target: { value } }) => {
-    this.setState({ query: value });
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleClick = async () => {
+    const { search } = this.state;
+    const { results } = await getProductsFromCategoryAndQuery(search);
+    this.setState = {
+      products: results,
+      apiCall: true,
+    };
   }
 
   render() {
-    const { query } = this.state;
-
+    const { search, products, apiCall } = this.state;
     return (
       <div>
         <Categories />
-        <SearchBar
-          query={ query }
-          onChange={ this.handleChange }
-        />
+        <label htmlFor="search-bar-label" data-testid="home-initial-message">
+          <input
+            id="search-bar-label"
+            type="text"
+            name="search"
+            value={ search }
+            onChange={ this.handleChange }
+            placeholder="Termo de pesquisa"
+            data-testid="query-input"
+          />
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </label>
+        <button
+          data-testid="query-button"
+          type="button"
+          onClick={ this.handleClick }
+        >
+          Pesquisar
+        </button>
+        <Link
+          to="/shopping-cart"
+          data-testid="shopping-cart-button"
+        >
+          Ícone do carrinho de compras
+        </Link>
+        {(apiCall) ? products.map((product) => (
+          <ProductCard
+            product={ product }
+            key={ product.id }
+          />))
+          : <p>Nenhum produto foi encontrado</p>}
       </div>
     );
   }
