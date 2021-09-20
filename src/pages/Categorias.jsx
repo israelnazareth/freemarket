@@ -17,13 +17,14 @@ class Categorias extends React.Component {
     });
 
     return (
-      <ul>
-        {categories.map((categorie, index) => (
-          <li key={ index }>
-            <input type="radio" value={ categorie.name } />
-          </li>
+      <div>
+        {categories.map((category) => (
+          <label key={ category.id } data-testid="category" htmlFor={ category.id }>
+            <input type="radio" id={ category.id } />
+            {category.name}
+          </label>
         ))}
-      </ul>
+      </div>
     );
   }
 }
