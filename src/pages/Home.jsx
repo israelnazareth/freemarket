@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Categories from '../components/Categories';
 import ProductCard from '../components/ProductCard';
 import { getProductsFromCategoryAndQuery } from '../services/api';
@@ -57,6 +58,12 @@ class Home extends Component {
             Pesquisar
           </button>
           <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
+          <Link
+            to="/shopping-cart"
+            data-testid="shopping-cart-button"
+          >
+            Ícone do carrinho de compras
+          </Link>
           {(apiCall) ? products.map((product) => (
             <ProductCard
               key={ product.id }
