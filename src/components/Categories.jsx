@@ -12,7 +12,12 @@ class Categories extends React.Component {
   }
 
   componentDidMount() {
-    getCategories().then((categories) => this.setState({ categories }));
+    this.getCategoriesAPI();
+  }
+
+  getCategoriesAPI = async () => {
+    const categories = await getCategories();
+    this.setState({ categories });
   }
 
   render() {
@@ -20,16 +25,17 @@ class Categories extends React.Component {
     const { onClick } = this.props;
     return (
       <div className="categories-div">
-        {categories.map((category) => (
-          <button
-            id={ category.id }
-            type="button"
-            data-testid="category"
-            key={ category.id }
-            onClick={ onClick }
-          >
-            { category.name }
-          </button>))}
+        {categories
+          .map((category) => (
+            <button
+              id={ category.id }
+              type="button"
+              data-testid="category"
+              key={ category.id }
+              onClick={ onClick }
+            >
+              { category.name }
+            </button>))}
       </div>
     );
   }
