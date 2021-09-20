@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Categorias from './Categorias';
+import Categories from './Categories';
 // import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
@@ -29,7 +29,7 @@ class Home extends Component {
 
     return (
       <div>
-        <Categorias />
+        <Categories />
         <div className="search-bar-div">
           <label htmlFor="search-bar-label" data-testid="home-initial-message">
             <input
