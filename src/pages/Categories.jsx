@@ -10,21 +10,8 @@ class Categories extends React.Component {
     };
   }
 
-  // chamaAPI = () => {
-  //   getCategories().then((response) => {
-  //     this.setState({ categories: response });
-  //   });
-  // }
-
-  updateState = (categories) => {
-    this.setState({
-      categories,
-    });
-  };
-
-  componentDidMount = async () => {
-    const categories = await getCategories();
-    this.updateState(categories);
+  componentDidMount () {
+    getCategories().then((categories) => this.setState({ categories }))
   };
 
   render() {
