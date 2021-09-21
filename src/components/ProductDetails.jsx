@@ -27,10 +27,6 @@ class ProductDetails extends Component {
 
 ProductDetails.propTypes = {
   location: PropTypes.shape([]).isRequired,
-  title: PropTypes.string.isRequired,
-  thumbnail: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  attributes: PropTypes.shape([]).isRequired,
 };
 
 export default ProductDetails;
