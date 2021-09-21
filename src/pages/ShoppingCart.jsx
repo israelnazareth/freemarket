@@ -8,9 +8,7 @@ class ShoppingCart extends Component {
       <div>
         <h1>Carrinho de produtos</h1>
         <div>
-          <span
-            data-testid="shopping-cart-product-quantity"
-          >
+          <span data-testid="shopping-cart-product-quantity">
             { cart.length }
           </span>
           &nbsp;produtos adicionados
