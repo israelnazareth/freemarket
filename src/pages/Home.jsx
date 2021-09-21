@@ -39,7 +39,9 @@ class Home extends Component {
     const { search, products, apiCall } = this.state;
     return (
       <div>
-        <Categories onClick={ this.categoryClick } />
+        <Categories
+          onClick={ this.categoryClick }
+        />
         <SearchBar
           onChange={ this.handleChange }
           value={ search }
@@ -49,8 +51,8 @@ class Home extends Component {
           <ProductCard
             key={ product.id }
             product={ product }
-          />)) : <p>Nenhum produto foi encontrado</p>}
-
+          />
+        )) : <p>Nenhum produto foi encontrado</p>}
       </div>
     );
   }
