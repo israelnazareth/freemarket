@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Rating from './Rating';
 
 class ProductDetails extends Component {
   addProduct = (product) => {
@@ -59,6 +60,7 @@ class ProductDetails extends Component {
             { cartItemsSize }
           </span>
         </Link>
+        <Rating />
       </section>
     );
   }
