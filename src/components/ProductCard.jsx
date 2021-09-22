@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { addProduct } from '../services/product.service';
 
 class ProductCard extends Component {
-  addProduct = () => {
-    const { postAddProduct } = this.props;
-    const { product } = this.props;
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const newProduct = {
-      id: product.id,
-      title: product.title,
-    };
-
-    cart.push(newProduct);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    postAddProduct();
-  }
-
   render() {
     const { product: { title, thumbnail, price, id, attributes } } = this.props;
+    const { product, postAddProduct } = this.props;
 
     return (
       <div data-testid="product">
@@ -36,7 +24,11 @@ class ProductCard extends Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
-          onClick={ this.addProduct }
+          onClick={ () => addProduct({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+          }, postAddProduct) }
         >
           Adicionar ao Carrinho
         </button>

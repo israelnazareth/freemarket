@@ -2,30 +2,32 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
+import { addProduct } from '../services/product.service';
 
 class ProductDetails extends Component {
-  addProduct = (product) => {
-    let cart = [];
+  constructor() {
+    super();
 
-    const newProduct = {
-      id: product.id,
-      title: product.title,
+    this.state = {
+      cartItemsSize: localStorage.getItem('productQuantity') || 0,
     };
-
-    if (localStorage.getItem('cart')) {
-      cart = JSON.parse(localStorage.getItem('cart'));
-    }
-
-    cart.push(newProduct);
-    localStorage.setItem('cart', JSON.stringify(cart));
   }
 
   render() {
-    const { location:
-      { state: {
-        title, thumbnail, price, attributes, id } } } = this.props;
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    const cartItemsSize = cart ? cart.length : 0;
+    const {
+      location: {
+        state: {
+          title,
+          thumbnail,
+          price,
+          attributes,
+          id,
+        },
+      },
+    } = this.props;
+    const { cartItemsSize } = this.state;
+    const product = { id, title, price };
+
     return (
       <section data-testid="product-detail-name">
         <h1>{`${title}`}</h1>
@@ -45,19 +47,19 @@ class ProductDetails extends Component {
         <button
           data-testid="product-detail-add-to-cart"
           type="button"
-          onClick={ this.addProduct({ id, title }) }
+          onClick={ () => addProduct(product, () => {
+            this.setState({
+              cartItemsSize: localStorage.getItem('productQuantity'),
+            });
+          }) }
         >
           Adicionar ao carrinho
         </button>
-        <Link
-          to="/shopping-cart"
-          data-testid="shopping-cart-button"
-        >
+        <br />
+        <Link to="/shopping-cart" data-testid="shopping-cart-button">
           <span role="img" aria-label="cart">&#128722;</span>
-          <span
-            data-testid="shopping-cart-product-quantity"
-          >
-            { cartItemsSize }
+          <span data-testid="shopping-cart-product-quantity">
+            {cartItemsSize}
           </span>
         </Link>
         <Rating />

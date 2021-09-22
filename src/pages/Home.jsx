@@ -12,7 +12,7 @@ class Home extends Component {
       products: [],
       search: '',
       apiCall: false,
-      cartItemsSize: JSON.parse(localStorage.getItem('cart') || '[]').length,
+      cartItemsSize: localStorage.getItem('productQuantity') || 0,
     };
   }
 
@@ -66,7 +66,7 @@ class Home extends Component {
             postAddProduct={ () => {
               this.setState({
                 cartItemsSize:
-                  JSON.parse(localStorage.getItem('cart')).length,
+                  JSON.parse(localStorage.getItem('productQuantity')),
               });
             } }
           />
