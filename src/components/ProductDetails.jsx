@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ProductCard from './ProductCard';
 
 class ProductDetails extends Component {
+  addProduct = (product) => {
+    let cart = [];
 
-  addProduct = () => {
-    const { postAddProduct } = this.props;
-    const { product } = this.props;
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
     const newProduct = {
       id: product.id,
       title: product.title,
     };
 
+    if (localStorage.getItem('cart')) {
+      cart = JSON.parse(localStorage.getItem('cart'));
+    }
+
     cart.push(newProduct);
     localStorage.setItem('cart', JSON.stringify(cart));
-    postAddProduct();
   }
 
   render() {
-    const { location: { state: { title, thumbnail, price, attributes } } } = this.props;
-
+    const { location:
+      { state: {
+        title, thumbnail, price, attributes, id } } } = this.props;
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const cartItemsSize = cart ? cart.length : 0;
     return (
       <section data-testid="product-detail-name">
         <h1>{`${title}`}</h1>
@@ -37,17 +40,25 @@ class ProductDetails extends Component {
           </ul>
         </div>
         <p>{`R$${price.toFixed(2)}`}</p>
+
         <button
           data-testid="product-detail-add-to-cart"
           type="button"
-          onClick={ this.addProduct }
+          onClick={ this.addProduct({ id, title }) }
         >
           Adicionar ao carrinho
         </button>
         <Link
-          to="/cart"
+          to="/shopping-cart"
           data-testid="shopping-cart-button"
-        />
+        >
+          <span role="img" aria-label="cart">&#128722;</span>
+          <span
+            data-testid="shopping-cart-product-quantity"
+          >
+            { cartItemsSize }
+          </span>
+        </Link>
       </section>
     );
   }
