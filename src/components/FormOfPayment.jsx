@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class FormOfPayment extends Component {
+class FormOfPayment extends Component {
   render() {
     return (
       <div>
