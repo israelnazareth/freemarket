@@ -10,6 +10,7 @@ class SearchBar extends Component {
           onChange={ onChange }
           name="search"
           value={ value }
+          className="search-bar"
           type="text"
           placeholder="Termo de pesquisa"
           data-testid="query-input"
@@ -17,6 +18,7 @@ class SearchBar extends Component {
         <button
           type="button"
           data-testid="query-button"
+          className="search-button"
           onClick={ onClick }
         >
           Pesquisar
