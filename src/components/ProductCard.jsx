@@ -9,7 +9,7 @@ class ProductCard extends Component {
     const { product, postAddProduct } = this.props;
 
     return (
-      <div data-testid="product">
+      <div data-testid="product" className="product">
         <Link
           to={ {
             pathname: `/details/${id}`,
@@ -17,21 +17,24 @@ class ProductCard extends Component {
           } }
           data-testid="product-detail-link"
         >
-          <h3>{title}</h3>
+          <h4>{title}</h4>
+          <img src={ thumbnail } alt={ title } className="image-product" />
         </Link>
-        <img src={ thumbnail } alt={ title } />
         <p>{`R$${price.toFixed(2)}`}</p>
-        <button
-          type="button"
-          data-testid="product-add-to-cart"
-          onClick={ () => addProduct({
-            id: product.id,
-            title: product.title,
-            price: product.price,
-          }, postAddProduct) }
-        >
-          Adicionar ao Carrinho
-        </button>
+        <div className="container-button">
+          <button
+            type="button"
+            data-testid="product-add-to-cart"
+            className="add-to-cart-button"
+            onClick={ () => addProduct({
+              id: product.id,
+              title: product.title,
+              price: product.price,
+            }, postAddProduct) }
+          >
+            Adicionar ao Carrinho
+          </button>
+        </div>
       </div>
     );
   }

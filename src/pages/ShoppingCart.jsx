@@ -56,7 +56,8 @@ class ShoppingCart extends Component {
               <span>
                 {
                   cart.reduce((acumulator, product) => acumulator
-                    + parseFloat(product.price) * parseFloat(product.quantity), 0)
+                    + parseFloat(product.price)
+                    * parseFloat(product.quantity), 0).toFixed(2)
                 }
               </span>
             </div>

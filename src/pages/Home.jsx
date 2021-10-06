@@ -41,37 +41,41 @@ class Home extends Component {
     const { search, products, apiCall, cartItemsSize } = this.state;
 
     return (
-      <div>
+      <main>
         <Categories onClick={ this.selectCategory } />
-        <SearchBar
-          onChange={ this.handleChange }
-          value={ search }
-          onClick={ this.searchProductsByName }
-        />
-        <Link
-          to="/shopping-cart"
-          data-testid="shopping-cart-button"
-        >
-          <span role="img" aria-label="cart">&#128722;</span>
-          <span
-            data-testid="shopping-cart-product-quantity"
-          >
-            { cartItemsSize }
-          </span>
-        </Link>
-        {apiCall ? products.map((product) => (
-          <ProductCard
-            key={ product.id }
-            product={ product }
-            postAddProduct={ () => {
-              this.setState({
-                cartItemsSize:
-                  JSON.parse(localStorage.getItem('productQuantity')),
-              });
-            } }
+        <div className="main">
+          <SearchBar
+            onChange={ this.handleChange }
+            value={ search }
+            onClick={ this.searchProductsByName }
           />
-        )) : <p>Nenhum produto foi encontrado</p>}
-      </div>
+          <Link
+            to="/shopping-cart"
+            data-testid="shopping-cart-button"
+          >
+            <span role="img" aria-label="cart">&#128722;</span>
+            <span
+              data-testid="shopping-cart-product-quantity"
+            >
+              { cartItemsSize }
+            </span>
+          </Link>
+          <div id="products-list">
+            {apiCall ? products.map((product) => (
+              <ProductCard
+                key={ product.id }
+                product={ product }
+                postAddProduct={ () => {
+                  this.setState({
+                    cartItemsSize:
+                      JSON.parse(localStorage.getItem('productQuantity')),
+                  });
+                } }
+              />
+            )) : <p>Nenhum produto foi encontrado</p>}
+          </div>
+        </div>
+      </main>
     );
   }
 }
