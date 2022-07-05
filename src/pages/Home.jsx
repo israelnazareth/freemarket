@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Categories from '../components/Categories';
 import ProductCard from '../components/ProductCard';
 import SearchBar from '../components/SearchBar';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import { getProductsFromCategory, getProductsFromQuery } from '../services/api';
 
 class Home extends Component {
   constructor() {
@@ -24,17 +24,23 @@ class Home extends Component {
   }
 
   selectCategory = async ({ target: { id } }) => {
-    const { results } = await getProductsFromCategoryAndQuery(id);
+    const { results } = await getProductsFromCategory(id);
     this.setState({ products: results, apiCall: true });
   }
 
   searchProductsByName = async () => {
     const { search } = this.state;
-    const { results } = await getProductsFromCategoryAndQuery(search);
+    const { results } = await getProductsFromQuery(search);
     this.setState({
       products: results,
       apiCall: true,
     });
+  }
+
+  handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      return this.searchProductsByName();
+    }
   }
 
   render() {
@@ -48,6 +54,7 @@ class Home extends Component {
             onChange={ this.handleChange }
             value={ search }
             onClick={ this.searchProductsByName }
+            onKeyDown={ this.handleKeyDown }
           />
           <Link
             to="/shopping-cart"

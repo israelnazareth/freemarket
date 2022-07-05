@@ -36,6 +36,7 @@ class ShoppingCart extends Component {
 
     return (
       <div>
+        <Link to="/"><h4>Voltar para home</h4></Link>
         <h1>Carrinho de produtos</h1>
         <div>
           <span>
@@ -72,6 +73,7 @@ class ShoppingCart extends Component {
         <Link to="/checkout">
           <button data-testid="checkout-products" type="button">comprar</button>
         </Link>
+
       </div>
     );
   }
