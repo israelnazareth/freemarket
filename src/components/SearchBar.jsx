@@ -13,7 +13,7 @@ class SearchBar extends Component {
           value={ value }
           className="search-bar"
           type="text"
-          placeholder="Termo de pesquisa"
+          placeholder="Buscar por produtos, marcas..."
           data-testid="query-input"
         />
         <button
@@ -24,7 +24,6 @@ class SearchBar extends Component {
         >
           Pesquisar
         </button>
-        <p>Digite algum termo de pesquisa ou escolha uma categoria.</p>
       </div>
     );
   }

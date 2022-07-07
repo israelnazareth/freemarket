@@ -20,7 +20,7 @@ class ProductCard extends Component {
           <h4>{title}</h4>
           <img src={ thumbnail } alt={ title } className="image-product" />
         </Link>
-        <p>{`R$${price.toFixed(2)}`}</p>
+        <p className="price">{`R$ ${price.toFixed(2).replace('.', ',')}`}</p>
         <div className="container-button">
           <button
             type="button"

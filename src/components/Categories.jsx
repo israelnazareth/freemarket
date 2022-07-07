@@ -21,7 +21,6 @@ class Categories extends React.Component {
     const { onClick } = this.props;
     return (
       <div className="categories-div">
-        <p>Categorias:</p>
         {categories
           .map((category) => (
             <button

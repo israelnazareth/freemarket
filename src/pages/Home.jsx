@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../free-market-logo.png';
 import Categories from '../components/Categories';
 import ProductCard from '../components/ProductCard';
 import SearchBar from '../components/SearchBar';
@@ -48,25 +49,33 @@ class Home extends Component {
 
     return (
       <main>
-        <Categories onClick={ this.selectCategory } />
         <div className="main">
-          <SearchBar
-            onChange={ this.handleChange }
-            value={ search }
-            onClick={ this.searchProductsByName }
-            onKeyDown={ this.handleKeyDown }
-          />
-          <Link
-            to="/shopping-cart"
-            data-testid="shopping-cart-button"
-          >
-            <span role="img" aria-label="cart">&#128722;</span>
-            <span
-              data-testid="shopping-cart-product-quantity"
+          <header className="header">
+            <Link to="/">
+              <img src={ Logo } alt="Logo Free Market" className="logo" />
+            </Link>
+            <SearchBar
+              onChange={ this.handleChange }
+              value={ search }
+              onClick={ this.searchProductsByName }
+              onKeyDown={ this.handleKeyDown }
+            />
+            <Link
+              to="/shopping-cart"
+              data-testid="shopping-cart-button"
             >
-              { cartItemsSize }
-            </span>
-          </Link>
+              <span
+                role="img"
+                aria-label="cart"
+                data-testid="shopping-cart-product-quantity"
+                className="span-cart"
+              >
+                Carrinho: &#128722;
+                { cartItemsSize }
+              </span>
+            </Link>
+          </header>
+          <Categories onClick={ this.selectCategory } />
           <div id="products-list">
             {apiCall ? products.map((product) => (
               <ProductCard
@@ -79,7 +88,7 @@ class Home extends Component {
                   });
                 } }
               />
-            )) : <p>Nenhum produto foi encontrado</p>}
+            )) : <p>Pesquise por um produto</p>}
           </div>
         </div>
       </main>
