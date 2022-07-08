@@ -46,6 +46,18 @@ class Home extends Component {
 
   render() {
     const { search, products, apiCall, cartItemsSize } = this.state;
+    const productsRendering = products.length ? products.map((product) => (
+      <ProductCard
+        key={ product.id }
+        product={ product }
+        postAddProduct={ () => {
+          this.setState({
+            cartItemsSize:
+              JSON.parse(localStorage.getItem('productQuantity')),
+          });
+        } }
+      />
+    )) : <p>Nenhum produto encontrado.</p>;
 
     return (
       <main>
@@ -77,18 +89,7 @@ class Home extends Component {
           </header>
           <Categories onClick={ this.selectCategory } />
           <div id="products-list">
-            {apiCall ? products.map((product) => (
-              <ProductCard
-                key={ product.id }
-                product={ product }
-                postAddProduct={ () => {
-                  this.setState({
-                    cartItemsSize:
-                      JSON.parse(localStorage.getItem('productQuantity')),
-                  });
-                } }
-              />
-            )) : <p>Pesquise por um produto</p>}
+            {apiCall ? productsRendering : <p>Pesquise por um produto</p>}
           </div>
         </div>
       </main>
