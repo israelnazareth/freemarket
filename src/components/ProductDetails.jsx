@@ -13,6 +13,11 @@ class ProductDetails extends Component {
     };
   }
 
+  formatedPrice = (price) => {
+    if (price === null) price = 0;
+    return price.toFixed(2).replace('.', ',');
+  }
+
   render() {
     const {
       location: {
@@ -29,40 +34,54 @@ class ProductDetails extends Component {
     const product = { id, title, price };
 
     return (
-      <section data-testid="product-detail-name">
-        <h1>{`${title}`}</h1>
-        <img src={ thumbnail } alt={ `Figure of ${title}` } />
-        <div>
-          <h3>Detalhes do produto:</h3>
-          <ul>
-            {attributes.map((attribute) => (
-              <li key={ attribute.id }>
-                {`${attribute.name}: ${attribute.value_name}`}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <p>{`R$${price.toFixed(2)}`}</p>
-
-        <button
-          data-testid="product-detail-add-to-cart"
-          type="button"
-          onClick={ () => addProduct(product, () => {
-            this.setState({
-              cartItemsSize: localStorage.getItem('productQuantity'),
-            });
-          }) }
-        >
-          Adicionar ao carrinho
-        </button>
-        <br />
-        <Link to="/shopping-cart" data-testid="shopping-cart-button">
-          <span role="img" aria-label="cart">&#128722;</span>
-          <span data-testid="shopping-cart-product-quantity">
-            {cartItemsSize}
-          </span>
-        </Link>
-        <Rating />
+      <section>
+        <section className="product-details" data-testid="product-detail-name">
+          <h1>{`${title}`}</h1>
+          <img
+            className="img-prod-detls"
+            src={ thumbnail }
+            alt={ `Figure of ${title}` }
+          />
+          <div>
+            <h3>Detalhes do produto:</h3>
+            <table className="table-details">
+              <tbody>
+                {attributes.map((attribute) => (
+                  <tr key={ attribute.id }>
+                    <td>
+                      {`${attribute.name}`}
+                    </td>
+                    <td>
+                      {`${attribute.value_name}`}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="price">{`R$${this.formatedPrice(price)}`}</p>
+          <button
+            data-testid="product-detail-add-to-cart"
+            type="button"
+            className="detail-button"
+            onClick={ () => addProduct(product, () => {
+              this.setState({
+                cartItemsSize: localStorage.getItem('productQuantity'),
+              });
+            }) }
+          >
+            Adicionar ao carrinho
+          </button>
+          <br />
+          <Link to="/shopping-cart" data-testid="shopping-cart-button">
+            <span role="img" aria-label="cart">&#128722;</span>
+            <span data-testid="shopping-cart-product-quantity">
+              {cartItemsSize}
+            </span>
+          </Link>
+          <Rating />
+        </section>
+        <Link to="/"><h3>Voltar para &#127968;</h3></Link>
       </section>
     );
   }

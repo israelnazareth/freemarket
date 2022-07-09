@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import { addProduct } from '../services/product.service';
 
 class ProductCard extends Component {
+  formatedPrice = (price) => {
+    if (price === null) price = 0;
+    return price.toFixed(2).replace('.', ',');
+  }
+
   render() {
     const { product: { title, thumbnail, price, id, attributes } } = this.props;
     const { product, postAddProduct } = this.props;
@@ -20,7 +25,7 @@ class ProductCard extends Component {
           <h4>{title}</h4>
           <img src={ thumbnail } alt={ title } className="image-product" />
         </Link>
-        <p className="price">{`R$ ${price.toFixed(2).replace('.', ',')}`}</p>
+        <p className="price">{`R$ ${this.formatedPrice(price)}`}</p>
         <div className="container-button">
           <button
             type="button"

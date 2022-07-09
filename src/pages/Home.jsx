@@ -89,7 +89,9 @@ class Home extends Component {
           </header>
           <Categories onClick={ this.selectCategory } />
           <div id="products-list">
-            {apiCall ? productsRendering : <p>Pesquise por um produto</p>}
+            {apiCall
+              ? productsRendering
+              : <p>Busque por um produto ou selecione uma categoria</p>}
           </div>
         </div>
       </main>

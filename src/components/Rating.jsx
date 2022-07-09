@@ -2,58 +2,28 @@ import React, { Component } from 'react';
 
 class Rating extends Component {
   render() {
+    // eslint-disable-next-line no-magic-numbers
+    const ratings = [1, 2, 3, 4, 5];
     return (
       <form>
         <h3>Avaliação</h3>
         <div>
-          <label htmlFor="radio1">
-            <input
-              type="radio"
-              name="Rating"
-              id="radio1"
-              value="1"
-            />
-            1
-          </label>
-          <label htmlFor="radio2">
-            <input
-              type="radio"
-              name="Rating"
-              id="radio2"
-              value="2"
-            />
-            2
-          </label>
-          <label htmlFor="radio3">
-            <input
-              type="radio"
-              name="Rating"
-              id="radio3"
-              value="3"
-            />
-            3
-          </label>
-          <label htmlFor="radio4">
-            <input
-              type="radio"
-              name="Rating"
-              id="radio4"
-              value="4"
-            />
-            4
-          </label>
-          <label htmlFor="radio5">
-            <input
-              type="radio"
-              name="Rating"
-              id="radio5"
-              value="5"
-            />
-            5
-          </label>
+          { ratings.map((number, index) => (
+            <label className="numbers-rating" key={ index } htmlFor={ index }>
+              <input
+                type="radio"
+                name="Rating"
+                id={ index }
+                value={ number }
+              />
+              { number }
+            </label>
+          )) }
         </div>
         <label htmlFor="e-mail">
+          Email:
           <input
+            className="email-rating"
             id="e-mail"
             type="e-mail"
             placeholder="Digite seu e-mail"
@@ -61,13 +31,17 @@ class Rating extends Component {
         </label>
         <label htmlFor="Rating">
           <textarea
+            className="textarea-rating"
+            placeholder="Deixe aqui seu comentário sobre o produto"
             data-testid="product-detail-evaluation"
             id="Rating"
             type="Rating"
+            cols="50"
+            rows="10"
           />
         </label>
         <div>
-          <button type="button">Enviar avaliação</button>
+          <button className="button-rating" type="button">Enviar avaliação</button>
         </div>
       </form>
     );

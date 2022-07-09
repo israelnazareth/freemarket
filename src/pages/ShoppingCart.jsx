@@ -36,7 +36,7 @@ class ShoppingCart extends Component {
 
     return (
       <div>
-        <Link to="/"><h4>Voltar para home</h4></Link>
+        <Link to="/"><h3>Voltar para &#127968;</h3></Link>
         <h1>Carrinho de produtos</h1>
         <div>
           <span>

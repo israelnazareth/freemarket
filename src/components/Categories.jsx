@@ -25,7 +25,7 @@ class Categories extends React.Component {
           .map((category) => (
             <button
               id={ category.id }
-              className="categorie-button"
+              className="category-button"
               type="button"
               data-testid="category"
               key={ category.id }
