@@ -14,44 +14,62 @@ class CartItem extends Component {
     } = this.props;
 
     return (
-      cart.map((product) => (
-        <div key={ product.id }>
-          <button
-            type="button"
-            onClick={ () => removeProductById(product.id, () => cartMap()) }
-          >
-            X
-          </button>
-          &nbsp;
-          <span data-testid="shopping-cart-product-name">
-            {product.title}
-          </span>
-          &nbsp;
-          <button
-            type="button"
-            data-testid="product-decrease-quantity"
-            onClick={ () => removeOneProductById(product.id, () => cartMap()) }
-          >
-            -
-          </button>
-          &nbsp;
-          <span data-testid="shopping-cart-product-quantity">{product.quantity}</span>
-          &nbsp;
-          <button
-            type="button"
-            data-testid="product-increase-quantity"
-            onClick={ () => addProduct({
-              id: product.id,
-              title: product.title,
-              price: product.price,
-            }, () => cartMap()) }
-          >
-            +
-          </button>
-          <br />
-          <br />
-        </div>
-      ))
+      <table className="table-cart">
+        <tr>
+          <th>Remover</th>
+          <th>Descrição</th>
+          <th>Quantidade</th>
+          <th>Preço unitário</th>
+        </tr>
+        {cart.map((product) => (
+          <tr key={ product.id }>
+            <td>
+              <button
+                type="button"
+                onClick={ () => removeProductById(product.id, () => cartMap()) }
+              >
+                X
+              </button>
+            </td>
+            <td>
+              <span data-testid="shopping-cart-product-name">
+                {product.title}
+              </span>
+            </td>
+            <td>
+              <button
+                type="button"
+                data-testid="product-decrease-quantity"
+                onClick={ () => removeOneProductById(product.id, () => cartMap()) }
+              >
+                -
+              </button>
+              <span
+                data-testid="shopping-cart-product-quantity"
+              >
+                {` ${product.quantity} `}
+              </span>
+              <button
+                type="button"
+                data-testid="product-increase-quantity"
+                onClick={ () => addProduct({
+                  id: product.id,
+                  title: product.title,
+                  price: product.price,
+                }, () => cartMap()) }
+              >
+                +
+              </button>
+            </td>
+            <td>
+              {(product.price).toLocaleString('pt-br',
+                { style: 'currency', currency: 'BRL' })}
+            </td>
+            <br />
+            <br />
+          </tr>
+        ))}
+      </table>
     );
   }
 }

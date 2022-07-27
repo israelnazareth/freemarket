@@ -60,6 +60,10 @@ button {
   border-radius: 0.2em;
 }
 
+.table-cart, .table-total-price {
+  margin: auto;
+}
+
 .table-details {
   border-collapse: collapse;
   width: 100%;

@@ -15,7 +15,8 @@ class ProductDetails extends Component {
 
   formatedPrice = (price) => {
     if (price === null) price = 0;
-    return price.toFixed(2).replace('.', ',');
+    return price.toLocaleString('pt-br',
+      { style: 'currency', currency: 'BRL' });
   }
 
   render() {
@@ -31,7 +32,7 @@ class ProductDetails extends Component {
       },
     } = this.props;
     const { cartItemsSize } = this.state;
-    const product = { id, title, price };
+    const product = { id, title, price, thumbnail };
 
     return (
       <section>
@@ -43,7 +44,7 @@ class ProductDetails extends Component {
             alt={ `Figure of ${title}` }
           />
           <div>
-            <h3>Detalhes do produto:</h3>
+            <h3>Detalhes do produto</h3>
             <table className="table-details">
               <tbody>
                 {attributes.map((attribute) => (
@@ -59,7 +60,7 @@ class ProductDetails extends Component {
               </tbody>
             </table>
           </div>
-          <p className="price">{`R$${this.formatedPrice(price)}`}</p>
+          <p className="price">{`${this.formatedPrice(price)}`}</p>
           <button
             data-testid="product-detail-add-to-cart"
             type="button"

@@ -36,14 +36,11 @@ class ShoppingCart extends Component {
 
     return (
       <div>
-        <Link to="/"><h3>Voltar para &#127968;</h3></Link>
+        <Link to="/">
+          <h3>Voltar para &#127968;</h3>
+        </Link>
         <h1>Carrinho de produtos</h1>
-        <div>
-          <span>
-            {cartItemsSize}
-          </span>
-          &nbsp;produtos adicionados
-        </div>
+        <div>{`${cartItemsSize} produto(s) adicionado(s)`}</div>
         <br />
         {cartItemsSize ? (
           <div>
@@ -51,29 +48,27 @@ class ShoppingCart extends Component {
               cart={ cart }
               cartMap={ this.cartMap }
             />
-
-            <div>
-              Valor total da compra: R$
-              <span>
-                {
-                  cart.reduce((acumulator, product) => acumulator
-                    + parseFloat(product.price)
-                    * parseFloat(product.quantity), 0).toFixed(2)
-                }
-              </span>
-            </div>
-
+            <table className="table-total-price">
+              <th>
+                {`Total: ${cart.reduce((acc, product) => acc
+                  + parseFloat(product.price)
+                  * parseFloat(product.quantity), 0)
+                  .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+                }`}
+              </th>
+            </table>
             <br />
-
-            <button type="button">
-              Finalizar compra
-            </button>
           </div>
         ) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
         <Link to="/checkout">
-          <button data-testid="checkout-products" type="button">comprar</button>
+          <button
+            className="detail-button"
+            data-testid="checkout-products"
+            type="button"
+          >
+            Finalizar compra
+          </button>
         </Link>
-
       </div>
     );
   }
