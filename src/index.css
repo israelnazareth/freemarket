@@ -6,7 +6,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(245, 245, 245);
+  background-color: #f5f5f5;
 }
 
 code {
@@ -19,6 +19,7 @@ code {
   justify-content: space-around;
   align-items: center;
   padding: 1em;
+  box-shadow: 0 1px 5px #c4c4c4;
 }
 
 .logo {
@@ -32,19 +33,19 @@ button {
 .search-bar {
   padding: 0.8em;
   width: 25em;
-  border: solid 1px rgb(243, 243, 2);
+  border: solid 1px #f3f302;
   outline: none;
-  box-shadow: 0 1px 5px rgb(196, 196, 196);
+  box-shadow: 0 1px 5px #c4c4c4;
 }
 
 .search-button {
-  background-color: rgb(59, 59, 250);
+  background-color: #3b3bfa;
   color: whitesmoke;
   padding: 0.8em;
   margin-left: 2px;
   border: none;
   border-radius: 4px;
-  box-shadow: 0 1px 5px rgb(137, 137, 137);
+  box-shadow: 0 1px 5px #898989;
 }
 
 .categories-div {
@@ -52,7 +53,8 @@ button {
 }
 
 .category-button {
-  background-color: rgb(59, 59, 250);
+  background-color: #3b3bfa;
+  font-size: medium;
   color: whitesmoke;
   padding: 8px;
   border: none;
@@ -62,6 +64,11 @@ button {
 
 .table-cart, .table-total-price {
   margin: auto;
+  width: 55%;
+}
+
+.table-total-price {
+  font-size: 1.5em;
 }
 
 .table-details {
@@ -78,8 +85,29 @@ tr:nth-child(even) {
   background-color: #e8e8e8;
 }
 
-.detail-button {
-  background-color: rgb(59, 59, 250);
+.remove-button {
+  background-color: #fa3b3b;
+  color: #fff;
+  border: none;
+  padding: 0.4em;
+  width: 2em;
+  border-radius: 0.2em;
+  font-size: large;
+}
+
+.increase-decrease-quantity {
+  background-color: #3b3bfa;
+  color: #fff;
+  border: none;
+  padding: 0.2em;
+  margin: 0 0.4em;
+  width: 1.5em;
+  border-radius: 0.2em;
+  font-size: large;
+}
+
+.detail-button, .go-to-checkout, .checkout-button {
+  background-color: #3b3bfa;
   color: whitesmoke;
   padding: 8px;
   border: none;
@@ -113,7 +141,7 @@ tr:nth-child(even) {
 }
 
 .add-to-cart-button {
-  background-color: rgb(59, 59, 250);
+  background-color: #3b3bfa;
   color: whitesmoke;
   font-size: medium;
   border: none;
@@ -128,7 +156,7 @@ tr:nth-child(even) {
 
 a {
   text-decoration: none;
-  color: rgb(100, 125, 206);
+  color: #647dce;
 }
 
 h4 {
@@ -181,7 +209,7 @@ h4 {
 }
 
 .button-rating {
-  background-color: rgb(59, 59, 250);
+  background-color: #3b3bfa;
   color: whitesmoke;
   font-size: medium;
   border: none;
@@ -194,4 +222,45 @@ h4 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.div-checkout {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 30em;
+  margin: auto;
+  text-align: center;
+  border: 2px #d2d2d2 solid;
+  border-radius: 10px;
+  background-color: #ffffff;
+  padding: 0 2em 2em 2em;
+}
+
+.form-client {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 26em;
+}
+
+.client-data {
+  padding: 0.5em;
+}
+
+.input-data {
+  margin-left: 1em;
+  width: 20em;
+}
+
+.checkout-button {
+  margin-top: 1em;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: auto;
+  margin: auto;
 }

@@ -91,7 +91,7 @@ class Home extends Component {
           <div id="products-list">
             {apiCall
               ? productsRendering
-              : <p>Busque por um produto ou selecione uma categoria</p>}
+              : <h3>Busque por um produto ou selecione uma categoria</h3>}
           </div>
         </div>
       </main>

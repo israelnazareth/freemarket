@@ -7,6 +7,12 @@ import {
 } from '../services/product.service';
 
 class CartItem extends Component {
+  formatedPrice = (price) => {
+    if (price === null) price = 0;
+    return price.toLocaleString('pt-br',
+      { style: 'currency', currency: 'BRL' });
+  }
+
   render() {
     const {
       cart,
@@ -26,6 +32,7 @@ class CartItem extends Component {
             <td>
               <button
                 type="button"
+                className="remove-button"
                 onClick={ () => removeProductById(product.id, () => cartMap()) }
               >
                 X
@@ -40,6 +47,7 @@ class CartItem extends Component {
               <button
                 type="button"
                 data-testid="product-decrease-quantity"
+                className="increase-decrease-quantity"
                 onClick={ () => removeOneProductById(product.id, () => cartMap()) }
               >
                 -
@@ -52,6 +60,7 @@ class CartItem extends Component {
               <button
                 type="button"
                 data-testid="product-increase-quantity"
+                className="increase-decrease-quantity"
                 onClick={ () => addProduct({
                   id: product.id,
                   title: product.title,
@@ -62,8 +71,7 @@ class CartItem extends Component {
               </button>
             </td>
             <td>
-              {(product.price).toLocaleString('pt-br',
-                { style: 'currency', currency: 'BRL' })}
+              {this.formatedPrice(product.price)}
             </td>
             <br />
             <br />

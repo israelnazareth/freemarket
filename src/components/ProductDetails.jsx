@@ -36,6 +36,12 @@ class ProductDetails extends Component {
 
     return (
       <section>
+        <Link to="/">
+          <h3>
+            Voltar para
+            <span role="img" aria-label="casa">&#127968;</span>
+          </h3>
+        </Link>
         <section className="product-details" data-testid="product-detail-name">
           <h1>{`${title}`}</h1>
           <img
@@ -60,7 +66,9 @@ class ProductDetails extends Component {
               </tbody>
             </table>
           </div>
-          <p className="price">{`${this.formatedPrice(price)}`}</p>
+          <p className="price">
+            {this.formatedPrice(price)}
+          </p>
           <button
             data-testid="product-detail-add-to-cart"
             type="button"
@@ -82,7 +90,6 @@ class ProductDetails extends Component {
           </Link>
           <Rating />
         </section>
-        <Link to="/"><h3>Voltar para &#127968;</h3></Link>
       </section>
     );
   }

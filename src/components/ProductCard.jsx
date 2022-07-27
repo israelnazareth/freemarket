@@ -6,7 +6,8 @@ import { addProduct } from '../services/product.service';
 class ProductCard extends Component {
   formatedPrice = (price) => {
     if (price === null) price = 0;
-    return price.toFixed(2).replace('.', ',');
+    return price.toLocaleString('pt-br',
+      { style: 'currency', currency: 'BRL' });
   }
 
   render() {
@@ -25,12 +26,15 @@ class ProductCard extends Component {
           <h4>{title}</h4>
           <img src={ thumbnail } alt={ title } className="image-product" />
         </Link>
-        <p className="price">{`R$ ${this.formatedPrice(price)}`}</p>
+        <p className="price">
+          {this.formatedPrice(price)}
+        </p>
         <div className="container-button">
           <button
             type="button"
             data-testid="product-add-to-cart"
             className="add-to-cart-button"
+            formatedPrice={ this.formatedPrice(price) }
             onClick={ () => addProduct({
               id: product.id,
               title: product.title,

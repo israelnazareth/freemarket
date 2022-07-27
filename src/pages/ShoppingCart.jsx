@@ -31,44 +31,52 @@ class ShoppingCart extends Component {
     });
   }
 
+  formatedPrice = (price) => {
+    if (price === null) price = 0;
+    return price.toLocaleString('pt-br',
+      { style: 'currency', currency: 'BRL' });
+  }
+
   render() {
     const { cart, cartItemsSize } = this.state;
 
     return (
       <div>
         <Link to="/">
-          <h3>Voltar para &#127968;</h3>
+          <h3>
+            Voltar para
+            <span role="img" aria-label="casa">&#127968;</span>
+          </h3>
         </Link>
         <h1>Carrinho de produtos</h1>
-        <div>{`${cartItemsSize} produto(s) adicionado(s)`}</div>
-        <br />
-        {cartItemsSize ? (
+        {cartItemsSize > 0 ? (
           <div>
+            <div>{`${cartItemsSize} produto(s) adicionado(s)`}</div>
+            <br />
             <CartItem
               cart={ cart }
               cartMap={ this.cartMap }
             />
             <table className="table-total-price">
               <th>
-                {`Total: ${cart.reduce((acc, product) => acc
-                  + parseFloat(product.price)
-                  * parseFloat(product.quantity), 0)
-                  .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-                }`}
+                {`Total: ${this.formatedPrice(
+                  cart.reduce((acc, { price, quantity }) => acc
+                  + price * quantity, 0),
+                )}`}
               </th>
             </table>
             <br />
+            <Link to="/checkout">
+              <button
+                className="go-to-checkout"
+                data-testid="checkout-products"
+                type="button"
+              >
+                Finalizar compra
+              </button>
+            </Link>
           </div>
-        ) : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
-        <Link to="/checkout">
-          <button
-            className="detail-button"
-            data-testid="checkout-products"
-            type="button"
-          >
-            Finalizar compra
-          </button>
-        </Link>
+        ) : <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio😢</h2>}
       </div>
     );
   }
