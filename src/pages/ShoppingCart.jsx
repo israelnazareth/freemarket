@@ -76,7 +76,7 @@ class ShoppingCart extends Component {
               </button>
             </Link>
           </div>
-        ) : <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio😢</h2>}
+        ) : <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>}
       </div>
     );
   }
