@@ -19,7 +19,7 @@ Neste projeto fomos capazes de:
 
   * Criar links de navegação na aplicação com o componente `Link`;
 
-  * Link da aplicação: Em breve;
+  * Link da aplicação: https://freemarket.vercel.app;
 
   - [Documentação da API](https://developers.mercadolivre.com.br/pt_br/itens-e-buscas);
 ---
