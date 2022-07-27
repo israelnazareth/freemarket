@@ -1,4 +1,4 @@
-const addProduct = (product, callback = () => { }) => {
+export const addProduct = (product, callback = () => { }) => {
   const cart = JSON.parse(localStorage.getItem('cart') || '{}');
   const productQuantity = parseInt(localStorage.getItem('productQuantity') || 0, 10) + 1;
   cart[product.id] = [...(cart[product.id] || []), product];
@@ -8,7 +8,7 @@ const addProduct = (product, callback = () => { }) => {
   callback();
 };
 
-const removeProductById = (id, callback = () => { }) => {
+export const removeProductById = (id, callback = () => { }) => {
   const cart = JSON.parse(localStorage.getItem('cart') || '[]');
   const productQuantity = parseInt(localStorage.getItem('productQuantity') || 0, 10)
     - cart[id].length;
@@ -19,7 +19,7 @@ const removeProductById = (id, callback = () => { }) => {
   callback();
 };
 
-const removeOneProductById = (id, callback = () => { }) => {
+export const removeOneProductById = (id, callback = () => { }) => {
   const cart = JSON.parse(localStorage.getItem('cart') || '[]');
   const productQuantity = parseInt(localStorage.getItem('productQuantity') || 0, 10) - 1;
 
@@ -32,10 +32,4 @@ const removeOneProductById = (id, callback = () => { }) => {
   localStorage.setItem('cart', JSON.stringify(cart));
   localStorage.setItem('productQuantity', productQuantity);
   callback();
-};
-
-module.exports = {
-  addProduct,
-  removeProductById,
-  removeOneProductById,
 };

@@ -34,7 +34,6 @@ class ProductCard extends Component {
             type="button"
             data-testid="product-add-to-cart"
             className="add-to-cart-button"
-            formatedPrice={ this.formatedPrice(price) }
             onClick={ () => addProduct({
               id: product.id,
               title: product.title,
