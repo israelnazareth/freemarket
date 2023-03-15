@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
 
 class Rating extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      rating: '☆☆☆☆☆'
+    }
+  }
+
+  handleRating(stars) {
+    const starsNumber = `★★★★★☆☆☆☆☆`.slice(4 - stars, 9 - stars)
+    this.setState({ rating: starsNumber });
+  }
+
   render() {
-    // eslint-disable-next-line no-magic-numbers
-    const ratings = [1, 2, 3, 4, 5];
+    const spansArray = [0, 1, 2, 3, 4]
     return (
       <form>
         <h3>Avaliação</h3>
         <div>
-          { ratings.map((number, index) => (
-            <label className="numbers-rating" key={ index } htmlFor={ index }>
-              <input
-                type="radio"
-                name="Rating"
-                id={ index }
-                value={ number }
-              />
-              { number }
-            </label>
-          )) }
+          {spansArray.map((stars) => (
+            <span
+              className='stars-rating'
+              onClick={() => this.handleRating(stars)}>
+              {this.state.rating[stars]}
+            </span>
+          ))}
         </div>
         <label htmlFor="e-mail">
           Email:

@@ -196,6 +196,13 @@ h4 {
   align-self: center;
 }
 
+.stars-rating {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: yellow;
+  -webkit-text-stroke: 1.1px black;
+}
+
 .numbers-rating, .email-rating {
   margin: 1em;
 }
