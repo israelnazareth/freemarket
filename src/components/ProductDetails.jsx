@@ -33,6 +33,7 @@ class ProductDetails extends Component {
     } = this.props;
     const { cartItemsSize } = this.state;
     const product = { id, title, price, thumbnail };
+    const image = thumbnail.replace(/\w.jpg/gi, 'W.jpg')
 
     return (
       <section>
@@ -46,7 +47,7 @@ class ProductDetails extends Component {
           <h1>{`${title}`}</h1>
           <img
             className="img-prod-detls"
-            src={ thumbnail }
+            src={ image }
             alt={ `Figure of ${title}` }
           />
           <div>
