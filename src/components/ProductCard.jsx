@@ -13,6 +13,7 @@ class ProductCard extends Component {
   render() {
     const { product: { title, thumbnail, price, id, attributes } } = this.props;
     const { product, postAddProduct } = this.props;
+    const image = thumbnail.replace(/\w.jpg/gi, 'W.jpg')
 
     return (
       <div data-testid="product" className="product">
@@ -24,7 +25,7 @@ class ProductCard extends Component {
           data-testid="product-detail-link"
         >
           <h4>{title}</h4>
-          <img src={ thumbnail } alt={ title } className="image-product" />
+          <img src={ image } alt={ title } className="image-product" />
         </Link>
         <p className="price">
           {this.formatedPrice(price)}
